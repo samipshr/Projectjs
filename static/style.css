@@ -1,0 +1,40 @@
+html{
+  box-sizing: border-box;
+}
+
+body{
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: #1D3157;
+  color:whitesmoke
+}
+
+#game {
+  min-height: 100vh;
+}
+
+#start-screen{
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 3em;
+}
+
+.game-title img{
+  max-width: 80%;
+  max-height: 40vh;
+  object-fit: contain;
+}
+.main-menu{
+  display: flex;
+  flex-direction: column;
+  gap:1em;
+}
+
+.main-menu button {
+  padding: 1em 3em;
+  font-size: 1em;
+  cursor: pointer;
+}
