@@ -5,17 +5,61 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="style.css">
-    <script src="script.js"></script>
+
 </head>
 <body>
     <main id="game">
 
         <section id="map-screen" hidden > </section>
 
-        <section id="location-screen" hidden > </section>
+        <section id="location-screen" > 
+            <div class = "top">
+                <figure class="location-img">
+                    <img src="images/kame_house.jpg" alt="Kamehouse">
+                </figure>
+                <!-- <p class="dialogue">something asdiosadndadsjasdkasjdkjaskdja daksj dk jsakd as djas jda something asdiosadndadsjasdkasjdkjaskdja daksj dk jsakd as djas jda something asdiosadndadsjasdkasjdkjaskdja daksj dk jsakd as djas jdasomething asdiosadndadsjasdkasjdkjaskdja daksj dk jsakd as djas jdasomething asdiosadndadsjasdkasjdkjaskdja daksj dk jsakd as djas jda</p> -->
+            </div>
+            <div class = "bot">
+                <div class = "left">
+                    <button>button 1</button>
+                    <button>button 2</button>
+                    <button>button 3</button>
+                    <button>button 4</button>
+                </div>
+                <div class = "right">
+                    <div class="live">
+                        <p>Life</p>
+                        <figure>
+                            <img src="images/heart.png" alt="live">
+                            <img src="images/heart.png" alt="live">
+                            <img src="images/heart.png" alt="live">
+                        </figure>
+                    </div>
+                    <div class="hp">
+                        <p>HP</p>
+                        <figure>
+                            <img src="images/hp.png" alt="hp">
+                        </figure>
+                    </div>
+                    <div class="inventory">
+                        <p>Inventory</p>
+                        <figure>
+                            <img src="images/db.png" alt="db">
+                            <img src="images/db.png" alt="db">
+                            <img src="images/db.png" alt="db">
+                            <img src="images/db.png" alt="db">
+                            <img src="images/db.png" alt="db">
+                            <img src="images/db.png" alt="db">
+                            <img src="images/db.png" alt="db">
+                        </figure>
+                    </div>
+                </div>
+            </div>
+        </section>
 
         <section id="battle-screen" hidden > </section>
 
     </main>
+    <script src="script.js"></script>
 </body>
 </html>
