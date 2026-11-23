@@ -7,18 +7,18 @@
     <link rel="stylesheet" href="style.css">
     <script src="js/main.js" defer></script>
     <script src="js/script.js" defer></script>
-</head>
-<header>
-<h1> Fantastic Three - Samip , Richard and Hoang </h1>
-  <nav class="header">
-          <button class="header_button" href="#">Home</button>
-          <button class="header_button" href="#">Something</button>
-          <button class="header_button" href="#">Something Else</button>
+    <header>
+        <h1> Fantastic Three - Samip , Richard and Hoang </h1>
+        <nav class="header">
+            <button class="header_button" href="#">Home</button>
+            <button class="header_button" href="#">Something</button>
+            <button class="header_button" href="#">Something Else</button>
         </nav>
-</header>
+    </header>
+</head>
 <body>
     <main id="game">
-        <section id="start-screen">
+        <section id="start-screen" >
             <div class="game-title">
                 <img src="images/main_menu_picture.gif" alt="Fantastic Three Main Menu">
           </div>
@@ -30,12 +30,56 @@
             </nav>
         </section>
 
-        <section id="map-screen" hidden > </section>
+        <section id="map-screen" class="hidden" > </section>
 
-        <section id="location-screen" hidden > </section>
+        <section id="location-screen" class="hidden"> 
+            <div class = "top">
+                <figure class="location-img">
+                    <img src="images/kame_house.jpg" alt="Kamehouse">
+                </figure>
+                <!-- <p class="dialogue">something asdiosadndadsjasdkasjdkjaskdja daksj dk jsakd as djas jda something asdiosadndadsjasdkasjdkjaskdja daksj dk jsakd as djas jda something asdiosadndadsjasdkasjdkjaskdja daksj dk jsakd as djas jdasomething asdiosadndadsjasdkasjdkjaskdja daksj dk jsakd as djas jdasomething asdiosadndadsjasdkasjdkjaskdja daksj dk jsakd as djas jda</p> -->
+            </div>
+            <div class = "bot">
+                <div class = "left">
+                    <button>button 1</button>
+                    <button>button 2</button>
+                    <button>button 3</button>
+                    <button>button 4</button>
+                </div>
+                <div class = "right">
+                    <div class="live">
+                        <p>Life</p>
+                        <figure>
+                            <img src="images/heart.png" alt="live">
+                            <img src="images/heart.png" alt="live">
+                            <img src="images/heart.png" alt="live">
+                        </figure>
+                    </div>
+                    <div class="hp">
+                        <p>HP</p>
+                        <figure>
+                            <img src="images/hp.png" alt="hp">
+                        </figure>
+                    </div>
+                    <div class="inventory">
+                        <p>Inventory</p>
+                        <figure>
+                            <img src="images/db.png" alt="db">
+                            <img src="images/db.png" alt="db">
+                            <img src="images/db.png" alt="db">
+                            <img src="images/db.png" alt="db">
+                            <img src="images/db.png" alt="db">
+                            <img src="images/db.png" alt="db">
+                            <img src="images/db.png" alt="db">
+                        </figure>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-        <section id="battle-screen" hidden > </section>
+        <section id="battle-screen" class="hidden" > </section>
 
     </main>
+    <script src="script.js"></script>
 </body>
 </html>

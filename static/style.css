@@ -1,3 +1,129 @@
+body{
+    margin:0;
+    padding: 0;
+    /* overflow: hidden */
+}
+
+#location-screen {
+    background-color: rgb(197, 225, 248);
+    width: 95%;
+    margin: auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    
+}
+
+#location-screen .top figure{
+    margin: 0;
+}
+
+#location-screen .top figure img{
+    display: block;
+    width: 90%;
+    margin: auto;
+    height: auto;
+}
+
+.dialogue {
+  position: absolute;
+  bottom: 11rem;      
+  left: 18rem;        
+  margin: 0;
+  color: #111111;
+  background-color: rgba(236, 229, 229, 0.5); 
+  padding: 6px 12px;
+  border-radius: 15px;
+  font-size: large;
+  width: 45%;
+}
+
+#location-screen .bot{
+    background-color: rgb(174, 247, 221);
+    display: flex;
+    width: 100%;
+}
+
+#location-screen .bot .left{    
+    width: calc(100%/2);
+    /* background-color: darkcyan; */
+    display: block;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: center;
+    padding-left: 2rem;
+}
+#location-screen .bot .left button{    
+    width: 40%;     
+    background-color: rgb(6, 180, 248);
+    border-radius: 10px;
+    padding: 12px;
+    margin: 8px;
+    color: aliceblue; 
+    font-size: large;
+    height: 3rem;
+}
+
+#location-screen .bot .right{
+    width: calc(100%/2);
+    /* background-color: darkgreen; */
+}
+
+.live{
+    display: block;
+    display: flex;
+    justify-content: flex-start;
+    height: 3.3rem; 
+}
+
+.live p{
+    padding-left: 3rem;
+    font-size: large;
+    color: rgb(20, 20, 20);
+}
+.live img{
+    width: 30px;
+    padding-right: 1rem;
+    
+}
+
+.hp{
+    display: block;
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    height: 3.3rem;
+}
+
+.hp p{
+    padding-left: 3rem;
+    font-size: large;
+    color: rgb(20, 20, 20);
+
+}
+.hp img{
+    width: 200px;
+    padding-right: 1rem;
+}
+.inventory{
+    display: block;
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    height: 3.3rem;
+}
+
+.inventory p{
+    padding-left: 3rem;
+    font-size: large;
+    color: rgb(20, 20, 20);
+
+}
+.inventory img{
+    width: 30px;
+    padding-right: 0.5rem;
+}
 *{
   box-sizing: border-box;
 }
@@ -71,4 +197,8 @@ nav.header{
 
 .main-menu button:hover {
   background-color: blueviolet;
+}
+
+.hidden {
+    display: none !important;
 }
