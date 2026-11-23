@@ -26,3 +26,14 @@ function dialogueoff(evt){
     screen.removeEventListener("click", dialogueoff);
     screen.addEventListener("click", dialogue);
 }
+
+
+const mainPage = document.querySelector("#start-screen");
+const locationPage = document.querySelector("#location-screen");
+const playBtn = document.querySelector("#play-button");
+
+playBtn.addEventListener("click", function (evt) {
+    evt.preventDefault();
+    mainPage.classList.add("hidden");
+    locationPage.classList.remove("hidden");
+})
