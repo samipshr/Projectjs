@@ -1,7 +1,7 @@
 body{
     margin:0;
     padding: 0;
-    overflow: hidden
+    /* overflow: hidden */
 }
 
 #location-screen {
@@ -197,4 +197,8 @@ nav.header{
 
 .main-menu button:hover {
   background-color: blueviolet;
+}
+
+.hidden {
+    display: none !important;
 }
