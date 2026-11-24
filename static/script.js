@@ -146,10 +146,10 @@ for(let i=0; i< points.length; i++){
         // change icon of location point
         for(let i=0; i< points.length; i++){
             points[i].src = "images/mappoint.png";
-            points[i].style.width = "20px";
+            points[i].style.width = "2%";
         }
         points[i].src = "images/goku.png";
-        points[i].style.width = "30px";
+        points[i].style.width = "3%";
 
         changeSection(mapPage,locationPage);
     })
@@ -158,11 +158,11 @@ for(let i=0; i< points.length; i++){
 // add dialogue
 function dialogue(evt){
     evt.preventDefault();
-    const top = document.querySelector(".top");
+    const figure = document.querySelector(".location-img");
     const p = document.createElement("p");
     p.classList.add("dialogue")
     p.innerText = dialoguetext;
-    top.appendChild(p)
+    figure.appendChild(p)
     screen.removeEventListener("click", dialogue);
     screen.addEventListener("click", dialogueOff);
 }
