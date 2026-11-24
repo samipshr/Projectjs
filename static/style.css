@@ -6,7 +6,7 @@ body{
 
 #location-screen {
     background-color: rgb(197, 225, 248);
-    width: 95%;
+    width: 100%;
     margin: auto;
     display: flex;
     flex-wrap: wrap;
@@ -14,11 +14,120 @@ body{
     
 }
 
-#location-screen .top figure{
+#map-screen {
+    background-color: rgb(197, 225, 248);
+    width: 100%;
+    margin: auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    
+}
+
+.map figure{
+    margin: 0;
+    position: relative;
+}
+
+.map figure img{
+    display: block;
+    width: 100%;
+    margin: auto;
+    height: auto;
+}
+
+.map figure .back_icon{
+    position: absolute;
+    top: 30px;
+    right: 25px;
+    width: 60px;
+    cursor: pointer;
+}
+
+.map figure .back_icon:hover{
+    opacity: 1;
+    filter: brightness(1.15);
+    transform: scale(1.1);
+}
+
+#kame_point{
+    top: 420px;
+    right: 315px;
+    width: 30px;
+}
+#satan_point{
+    top: 330px;
+    right: 315px;
+}
+#east_point{
+    top: 285px;
+    right: 95px;
+}
+#papaya_point{
+    top: 370px;
+    right: 120px;
+}
+#jingeru_point{
+    top: 240px;
+    right: 360px;
+}
+#north_point{
+    top: 230px;
+    right: 530px;
+}
+#central_point{
+    top: 320px;
+    right: 530px;
+}
+#yunzabit_point{
+    top: 230px;
+    right: 715px;
+}
+#pilaf_point{
+    top: 415px;
+    right: 525px;
+}
+#ginger_point{
+    top: 300px;
+    right: 720px;
+}
+#baseru_point{
+    top: 390px;
+    right: 750px;
+}
+#muscle_point{
+    top: 220px;
+    right: 902px;
+}
+#karin_point{
+    top: 305px;
+    right: 955px;
+}
+#redribbon_point{
+    top: 415px;
+    right: 965px;
+}
+#jungle_point{
+    top: 500px;
+    right: 920px;
+}
+.map figure .location_icon{
+    cursor: pointer;
+    width: 20px;
+    position: absolute;
+}
+.map figure .location_icon:hover{
+    opacity: 1;
+    filter: brightness(1.15);
+    transform: scale(1.1);
+}
+
+
+.top figure{
     margin: 0;
 }
 
-#location-screen .top figure img{
+.top figure img{
     display: block;
     width: 90%;
     margin: auto;
@@ -27,24 +136,24 @@ body{
 
 .dialogue {
   position: absolute;
-  bottom: 11rem;      
+  bottom: 3.5rem;      
   left: 18rem;        
   margin: 0;
   color: #111111;
-  background-color: rgba(236, 229, 229, 0.5); 
+  background-color: rgba(244, 241, 241, 0.861); 
   padding: 6px 12px;
   border-radius: 15px;
   font-size: large;
   width: 45%;
 }
 
-#location-screen .bot{
+.bot{
     background-color: rgb(174, 247, 221);
     display: flex;
     width: 100%;
 }
 
-#location-screen .bot .left{    
+.bot .left{    
     width: calc(100%/2);
     /* background-color: darkcyan; */
     display: block;
@@ -54,7 +163,7 @@ body{
     align-items: center;
     padding-left: 2rem;
 }
-#location-screen .bot .left button{    
+.bot .left button{    
     width: 40%;     
     background-color: rgb(6, 180, 248);
     border-radius: 10px;
@@ -63,9 +172,10 @@ body{
     color: aliceblue; 
     font-size: large;
     height: 3rem;
+    cursor: pointer;
 }
 
-#location-screen .bot .right{
+.bot .right{
     width: calc(100%/2);
     /* background-color: darkgreen; */
 }
@@ -83,7 +193,7 @@ body{
     color: rgb(20, 20, 20);
 }
 .live img{
-    width: 30px;
+    width: 40px;
     padding-right: 1rem;
     
 }
@@ -121,7 +231,7 @@ body{
 
 }
 .inventory img{
-    width: 30px;
+    width: 35px;
     padding-right: 0.5rem;
 }
 *{
