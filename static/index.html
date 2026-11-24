@@ -18,7 +18,7 @@
 </head>
 <body>
     <main id="game">
-        <section id="start-screen" >
+        <section id="start-screen">
             <div class="game-title">
                 <img src="images/main_menu_picture.gif" alt="Fantastic Three Main Menu">
           </div>
@@ -30,25 +30,47 @@
             </nav>
         </section>
 
-        <section id="map-screen" class="hidden" > </section>
+        <section id="map-screen" class="hidden"> 
+            <div class="map" >
+                <figure>
+                    <img src="images/map.png" alt="map">
+                    <img class="back_icon" src="images/back_icon.png" alt="back_icon">
+                    <img class="location_icon" id="kame_point" src="images/goku.png" alt="mappoint">
+                    <img class="location_icon" id="satan_point" src="images/mappoint.png" alt="mappoint">
+                    <img class="location_icon" id="east_point" src="images/mappoint.png" alt="mappoint">
+                    <img class="location_icon" id="papaya_point" src="images/mappoint.png" alt="mappoint">
+                    <img class="location_icon" id="jingeru_point" src="images/mappoint.png" alt="mappoint">
+                    <img class="location_icon" id="north_point" src="images/mappoint.png" alt="mappoint">
+                    <img class="location_icon" id="central_point" src="images/mappoint.png" alt="mappoint">
+                    <img class="location_icon" id="pilaf_point" src="images/mappoint.png" alt="mappoint">
+                    <img class="location_icon" id="yunzabit_point" src="images/mappoint.png" alt="mappoint">
+                    <img class="location_icon" id="ginger_point" src="images/mappoint.png" alt="mappoint">
+                    <img class="location_icon" id="baseru_point" src="images/mappoint.png" alt="mappoint">
+                    <img class="location_icon" id="muscle_point" src="images/mappoint.png" alt="mappoint">
+                    <img class="location_icon" id="karin_point" src="images/mappoint.png" alt="mappoint">
+                    <img class="location_icon" id="redribbon_point" src="images/mappoint.png" alt="mappoint">
+                    <img class="location_icon" id="jungle_point" src="images/mappoint.png" alt="mappoint">
+                </figure>
+            </div>
+        </section>
 
         <section id="location-screen" class="hidden"> 
             <div class = "top">
                 <figure class="location-img">
-                    <img src="images/kame_house.jpg" alt="Kamehouse">
+                    <img id="location_img" src="images/kame_house.jpg" alt="Kamehouse">
                 </figure>
                 <!-- <p class="dialogue">something asdiosadndadsjasdkasjdkjaskdja daksj dk jsakd as djas jda something asdiosadndadsjasdkasjdkjaskdja daksj dk jsakd as djas jda something asdiosadndadsjasdkasjdkjaskdja daksj dk jsakd as djas jdasomething asdiosadndadsjasdkasjdkjaskdja daksj dk jsakd as djas jdasomething asdiosadndadsjasdkasjdkjaskdja daksj dk jsakd as djas jda</p> -->
             </div>
             <div class = "bot">
                 <div class = "left">
-                    <button>button 1</button>
-                    <button>button 2</button>
-                    <button>button 3</button>
-                    <button>button 4</button>
+                    <button id="menu_btn">MENU</button>
+                    <button id="map_btn">MAP</button>
+                    <button id="save_btn">SAVE</button>
+                    <button>...</button>
                 </div>
                 <div class = "right">
                     <div class="live">
-                        <p>Life</p>
+                        <p>LIVE</p>
                         <figure>
                             <img src="images/heart.png" alt="live">
                             <img src="images/heart.png" alt="live">
@@ -62,7 +84,7 @@
                         </figure>
                     </div>
                     <div class="inventory">
-                        <p>Inventory</p>
+                        <p>INVENTORY</p>
                         <figure>
                             <img src="images/db.png" alt="db">
                             <img src="images/db.png" alt="db">
