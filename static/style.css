@@ -30,17 +30,18 @@ body{
 }
 
 .map figure img{
-    display: block;
-    width: 100%;
-    margin: auto;
+    /* display: block; */
+    max-width: 100%;
+    margin: 0 auto;
     height: auto;
+    width: fit-content;
 }
 
 .map figure .back_icon{
     position: absolute;
-    top: 30px;
-    right: 25px;
-    width: 60px;
+    top: 5%;
+    right: 3%;
+    width: 6%;
     cursor: pointer;
 }
 
@@ -51,69 +52,69 @@ body{
 }
 
 #kame_point{
-    top: 420px;
-    right: 315px;
-    width: 30px;
+    top: 68.5%;
+    right: 29%;
+    width: 3%;
 }
 #satan_point{
-    top: 330px;
-    right: 315px;
+    top: 54%;
+    right: 28.5%;
 }
 #east_point{
-    top: 285px;
-    right: 95px;
+    top: 46.5%;
+    right: 8.5%;
 }
 #papaya_point{
-    top: 370px;
-    right: 120px;
+    top: 60%;
+    right: 11%;
 }
 #jingeru_point{
-    top: 240px;
-    right: 360px;
+    top: 38%;
+    right: 33%;
 }
 #north_point{
-    top: 230px;
-    right: 530px;
+    top: 37.5%;
+    right: 48.35%;
 }
 #central_point{
-    top: 320px;
-    right: 530px;
+    top: 52%;
+    right: 48.35%;
 }
 #yunzabit_point{
-    top: 230px;
-    right: 715px;
+    top: 37.5%;
+    right: 65%;
 }
 #pilaf_point{
-    top: 415px;
-    right: 525px;
+    top: 66.5%;
+    right: 48%;
 }
 #ginger_point{
-    top: 300px;
-    right: 720px;
+    top: 49.5%;
+    right: 65.8%;
 }
 #baseru_point{
-    top: 390px;
-    right: 750px;
+    top: 64%;
+    right: 68.5%;
 }
 #muscle_point{
-    top: 220px;
-    right: 902px;
+    top: 36%;
+    right: 82.5%;
 }
 #karin_point{
-    top: 305px;
-    right: 955px;
+    top: 50%;
+    right: 87.3%;
 }
 #redribbon_point{
-    top: 415px;
-    right: 965px;
+    top: 68%;
+    right: 88%;
 }
 #jungle_point{
-    top: 500px;
-    right: 920px;
+    top: 85%;
+    right: 80%;
 }
 .map figure .location_icon{
     cursor: pointer;
-    width: 20px;
+    width: 2%;
     position: absolute;
 }
 .map figure .location_icon:hover{
@@ -124,27 +125,30 @@ body{
 
 
 .top figure{
-    margin: 0;
+    position: relative;
+    width: fit-content;
+    max-width: 90%;
+    margin: 0 auto;
 }
 
 .top figure img{
     display: block;
-    width: 90%;
-    margin: auto;
+    width: 100%;
     height: auto;
 }
 
 .dialogue {
   position: absolute;
-  bottom: 3.5rem;      
-  left: 18rem;        
+  top: 75%;      
+  left: 22%;        
   margin: 0;
   color: #111111;
   background-color: rgba(244, 241, 241, 0.861); 
   padding: 6px 12px;
   border-radius: 15px;
-  font-size: large;
-  width: 45%;
+  font-size: clamp(8px, 1.8vw, 18px);
+  width: 55%;
+  
 }
 
 .bot{
