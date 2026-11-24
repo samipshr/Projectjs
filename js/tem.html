@@ -1,0 +1,108 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>temporary</title>
+
+    <link rel="stylesheet" href="css/style.css">
+    <script src="java/player.js" defer></script>
+    <script src="java/battle.js" defer></script>
+</head>
+
+<body>
+
+    <!-- settings button - this is for the pop up, click on it and it opens up to more options. -->
+    <button id="settings-button" type="button" onclick="openMenu()"> ⚙ Settings</button>
+    <h1>Profile</h1>
+
+    <!-- menu popup -->
+    <div id="game-menu" class="popup">
+        <div class="popup-content">
+            <button class="close-button" type="button" onclick="closeMenu()">✖</button>
+            <h2>Game Menu</h2>
+
+            <!-- the main menu -->
+            <div id="menu-buttons">
+                <button type="button" onclick="showMenuPage('status-page')">Player Status</button>
+                <button type="button" onclick="showMenuPage('inventory-page')">Inventory</button>
+                <button type="button" onclick="showMenuPage('something-page')">something?</button>
+            </div>
+
+            <!-- player status - we haven't added naming for the player yet so this shall also be temporary-->
+            <section id="status-page" class="menu-page">
+                <h3>Player Stats</h3>
+                <p>Name: <span id="name">Hero</span></p>
+                <p>Level: <span id="lvl">1</span></p>
+                <p>Health: <span id="health">10</span></p>
+                <p>Experience: <span id="xp">0</span></p>
+                <button type="button" onclick="showMenuPage('menu-buttons')">
+                    Back
+                </button>
+            </section>
+
+            <!-- inventory -->
+            <section id="inventory-page" class="menu-page">
+                <h3>Inventory</h3>
+                <ul id="item-list"></ul>
+                <button type="button" onclick="showMenuPage('menu-buttons')">
+                    Back
+                </button>
+            </section>
+
+            <!-- something page -->
+            <section id="something-page" class="menu-page">
+                <h3>idk, fish?</h3>
+                <p>idk, quit button ?</p>
+                <button type="button" onclick="showMenuPage('menu-buttons')">
+                    Back
+                </button>
+            </section>
+        </div>
+    </div>
+
+    <!-- location - haven't added the images for background for each location and fight, haven't checked hoangs branch, sry-->
+    <section id="location-section">
+        <h2>Choose Location</h2>
+        <select id="location">
+            <option value="satan_city">Satan City</option>
+            <option value="castle">Castle</option>
+            <option value="capital">Capital</option>
+        </select>
+        <button type="button" onclick="startBattle()">
+            Explore
+        </button>
+    </section>
+
+    <!-- battle area -->
+    <section id="battle-section">
+        <h2>Battle Arena</h2>
+        <p id="current-location">
+            Waiting for adventure...
+        </p>
+
+        <!-- enemy -->
+        <div id="enemy-area">
+            <h3 id="enemy-name">No enemy</h3>
+            <img id="enemy-image" src="eimg/enemy.jpg" alt="Enemy monster">
+            <div id="enemy-health-box">
+                HP: <span id="enemy-health">-</span>
+            </div>
+        </div>
+
+        <!-- battle message -->
+        <div id="battle-message">
+            Choose a location and explore!
+        </div>
+
+        <!-- battle actions -->
+        <div id="battle-actions">
+            <button type="button" onclick="attackEnemy()" class="attack">Attack</button>
+            <button type="button" onclick="defendPlayer()" class="defend">Defend</button>
+            <button type="button" onclick="useItem()" class="item">Use Item</button>
+            <button type="button" onclick="runAway()" class="run">Run Away</button>
+        </div>
+    </section>
+</body>
+</html>
