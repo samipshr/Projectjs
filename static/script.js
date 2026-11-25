@@ -9,6 +9,26 @@ const playBtn = document.querySelector("#play-button");
 const mapBtn = document.querySelector('#map_btn');
 const backBtn = document.querySelector('.back_icon');
 const menuBtn = document.querySelector('#menu_btn');
+const homeBtn = document.querySelector("#home-button");
+const guideBtn = document.querySelector("#guide-button");
+const guidePopup = document.querySelector("#guide-popup");
+const closeGuideBtn = document.querySelector("#close-guide");
+const guidePages = document.querySelectorAll(".guide-page");
+const previousGuideBtn = document.querySelector("#previous-guide");
+const nextGuideBtn = document.querySelector("#next-guide");
+const guidePageNumber = document.querySelector("#guide-page-number");
+
+let currentGuidePage = 0;
+
+
+//guide button function
+guideBtn.addEventListener("click", function(){
+    guidePopup.showModal();
+});
+
+closeGuideBtn.addEventListener("click", function(){
+    guidePopup.close();
+});
 
 // change to location screen when click play button from start screen
 playBtn.addEventListener("click", function(evt){
@@ -39,8 +59,47 @@ function changeSection(screenA, screenB){
     screenA.classList.add("hidden");
     screenB.classList.remove("hidden");
 }
+// function to show guide book and change # 
+function showGuidePage(pageNumber) {
 
+    for (let i = 0; i < guidePages.length; i++) {
+        guidePages[i].classList.remove("active");
+    }
 
+    guidePages[pageNumber].classList.add("active");
+
+    currentGuidePage = pageNumber;
+
+    guidePageNumber.innerText = (currentGuidePage + 1) + " / " + guidePages.length;
+
+    previousGuideBtn.disabled = currentGuidePage === 0;
+    nextGuideBtn.disabled = currentGuidePage === guidePages.length - 1;
+}
+
+// Open the guide
+guideBtn.addEventListener("click", function() {
+    showGuidePage(0);
+    guidePopup.showModal();
+});
+
+// Close the guide
+closeGuideBtn.addEventListener("click", function() {
+    guidePopup.close();
+});
+
+// Previous page
+previousGuideBtn.addEventListener("click", function() {
+    if (currentGuidePage > 0) {
+        showGuidePage(currentGuidePage - 1);
+    }
+});
+
+// Next page
+nextGuideBtn.addEventListener("click", function() {
+    if (currentGuidePage < guidePages.length - 1) {
+        showGuidePage(currentGuidePage + 1);
+    }
+});
 // add fuction for location points
 
 const location_img = document.querySelector("#location_img"); 

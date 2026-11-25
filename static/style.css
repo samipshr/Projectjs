@@ -1,7 +1,66 @@
-body{
-    margin:0;
-    padding: 0;
-    /* overflow: hidden */
+#guide-popup {
+    width: 60%;
+    max-width: 35em;
+    background-color: #172238;
+    color: whitesmoke;
+    border: 2px solid #e5a82e;
+    border-radius: 10px;
+    padding: 1.5em;
+}
+
+#guide-popup::backdrop {
+    background-color: #000000bf;
+}
+
+.guide-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #52627c;
+}
+
+.guide-header h2 {
+    color: #f5c451;
+}
+
+.close-guide {
+    background: none;
+    border: none;
+    color: whitesmoke;
+    font-size: 2em;
+    cursor: pointer;
+}
+
+.guide-page {
+    display: none;
+    min-height: 12em;
+}
+
+.guide-page.active {
+    display: block;
+}
+
+.guide-navigation {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid #52627c;
+    padding-top: 1em;
+}
+
+.guide-navigation button {
+    background-color: #30415c;
+    color: whitesmoke;
+    border: 1px solid #52627c;
+    border-radius: 6px;
+    padding: 0.7em 1.2em;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.guide-navigation button:hover {
+    background-color: #e5a82e;
+    color: #172238;
 }
 
 #location-screen {
@@ -238,45 +297,62 @@ body{
     width: 35px;
     padding-right: 0.5rem;
 }
+
 *{
   box-sizing: border-box;
 }
 
+/* background to be added to ALL game screens */
 body{
   margin: 0;
+  padding: 0;
   font-family: Arial, Helvetica, sans-serif;
-  background-color: #4d7023;
-  color:whitesmoke;
+  background-color: #65734b;
+  /* background-image: url("white for now "); */
+  background-size: cover;
+  background-position: center;
+  /* overflow: hidden; */
 }
 
 header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 6em;
-  padding-left: 2em;
-  padding-right: 2em;
-;
- 
+  min-height: 5em;
+  padding: 0 2em;
+  background-color: #172238;
+  border-bottom: 2px solid #e5a82e;
 }
+
+header h1 {
+  color: #f5c451;
+  font-size: 1.5em;
+  margin: 0;
+}
+
 nav.header{
   display: flex;
-  flex-direction: row;
-  gap: 2em;
+  flex-direction: center;
+  gap: 1em;
 }
 
 .header_button{
-  padding: 1em 3em;
+  padding: .8em 1.5em;
   font-size: 1em;
+  text-decoration: none;
+  color: whitesmoke;
+  background-color: #30415c;
+  border: 1px solid #52627c;
+  border-radius: 6px;
   cursor: pointer;
-  gap: 2em;
-  background-color: rgba(165, 18, 173, 0.493)
+  transition: 0.2s;
 
 }
 
 .header_button:hover{
-  background-color: blueviolet;}
-
+  background-color: blueviolet;
+  color: #172238;
+}
 
 #game {
   min-height: 100vh;
@@ -315,4 +391,23 @@ nav.header{
 
 .hidden {
     display: none !important;
+}
+
+@media (max-width: 750px) {
+  header {
+    flex-direction: column;
+    justify-content: center;
+    gap: 1em;
+    padding: 1em;
+  }
+
+  header h1 {
+    font-size: 1.3em;
+    text-align: center;
+  }
+
+  nav.header {
+    justify-content: center;
+    flex-wrap: wrap;
+  }
 }
