@@ -758,3 +758,22 @@ nav.header{
         font-size: 15px;
     }
 }
+
+@media (max-width: 750px) {
+  header {
+    flex-direction: column;
+    justify-content: center;
+    gap: 1em;
+    padding: 1em;
+  }
+
+  header h1 {
+    font-size: 1.3em;
+    text-align: center;
+  }
+
+  nav.header {
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+}

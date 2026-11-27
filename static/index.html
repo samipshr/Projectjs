@@ -5,24 +5,58 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fantastic Three</title>
     <link rel="stylesheet" href="style.css">
-    <script src="js/main.js" defer></script>
     <script src="js/player.js" defer></script>
     <script src="js/battle.js" defer></script>
-    <script src="script.js" defer></script>    
+    <script src="js/dragonballs.js" defer></script>
+    <script src="js/script.js" defer></script>    
 
 </head>
 <body>
     <header>
         <h1> Fantastic Three - Samip , Richard and Hoang </h1>
         <nav class="header">
-            <button class="header_button" href="#">Home</button>
-            <button class="header_button" href="#">Something</button>
-            <button class="header_button" href="#">Something Else</button>
+          <a class="header_button" href="#">Home</a>
+          <a class="header_button" href="#" target="_blank">Presentation</a>
+          <a class="header_button" href="https://docs.google.com/spreadsheets/d/1D340hcELNXAlUSJtiTuUYRz2WSLdxohWShluUkKSuxg/edit?gid=0#gid=0" target="_blank">Timesheet</a>
         </nav>
     </header>
         <!-- settings button - this is for the pop up, click on it and it opens up to more options. -->
     <!-- <button id="settings-button" type="button" onclick="openMenu()"> ⚙ Settings</button> -->
+<dialog id="guide-popup">
+    <div class="guide-header">
+        <h2>Game Guide</h2>
+        <button id="close-guide" class="close-guide">X</button>
+    </div>
 
+    <div class="guide-content">
+
+        <div class="guide-page active">
+            <h3>Page 1 - Introduction</h3>
+            <p>Welcome to Fantastic Three!</p>
+            <p>Your adventure begins here. Explore the world and search for the Dragon Balls.</p>
+        </div>
+
+        <div class="guide-page">
+            <h3>Page 2 - Exploration</h3>
+            <p>Travel across the map by selecting different locations.</p>
+            <p>Talk to characters and discover clues about your adventure.</p>
+        </div>
+
+        <div class="guide-page">
+            <h3>Page 3 - Your Mission</h3>
+            <p>Collect the Dragon Balls and prepare yourself for the challenges ahead.</p>
+            <p>Good luck, warrior!</p>
+        </div>
+
+    </div>
+
+    <div class="guide-navigation">
+        <button id="previous-guide">Previous</button>
+        <span id="guide-page-number">1 / 3</span>
+        <button id="next-guide">Next</button>
+    </div>
+
+</dialog>
     <!-- menu popup -->
     <div id="game-menu" class="popup">
         <div class="popup-content">
@@ -109,8 +143,6 @@
             <!-- shown after a defeat / respawn -->
             <p id="notice" class="hidden"></p>
 
-            <!-- encounter: only appears at locations that still have an enemy -->
-            <p id="notice" class="hidden"></p>
             <!-- Location dialogue -->
             <div id="dialogue-box">
                 <p id="dialogue-text"></p>
@@ -161,7 +193,7 @@
                 <button type="button" onclick="useItem()" class="item"> Use Item </button>
                 <button type="button" onclick="runAway()" class="run"> Run Away </button>
             </div>
-
+          </div>
             <button id="fight-again" class="hidden" type="button" onclick="fightAgain()"> Fight Again </button>
             <button id="battle-map-button" type="button"> Return to Map </button>
 

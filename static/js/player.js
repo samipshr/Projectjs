@@ -19,15 +19,12 @@ const player = {
 
 // inventory - dunno what to do with this, you decide
 const itemData = {
-    "Kame House Meal": {
-        heal: 5
-    },
-    "good soup": {
-        heal: 3
-    },
-    "senju bean": {
-        heal: 8
-    }
+    "Kame House Meal": { heal: 2 },
+    "good soup":       { heal: 3 },
+    "senzu bean":      { heal: 4 },  
+    "Village Herbs":   { heal: 2 },
+    "Healing Capsule": { heal: 4 },
+    "Dumplings":       { heal: 3 }
 };
 
 const inventory = [];

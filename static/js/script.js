@@ -39,7 +39,58 @@ const backBtn = document.querySelector('.back_icon');
 const menuBtn = document.querySelector('#menu_btn');
 const settingsBtn = document.querySelector('#settings-button');
 const noticeBox = document.querySelector('#notice');
+const homeBtn = document.querySelector("#home-button");
+const guideBtn = document.querySelector("#guide-button");
+const guidePopup = document.querySelector("#guide-popup");
+const closeGuideBtn = document.querySelector("#close-guide");
+const guidePages = document.querySelectorAll(".guide-page");
+const previousGuideBtn = document.querySelector("#previous-guide");
+const nextGuideBtn = document.querySelector("#next-guide");
+const guidePageNumber = document.querySelector("#guide-page-number");
 
+let currentGuidePage = 0;
+
+// function to show guide book and change # 
+function showGuidePage(pageNumber) {
+
+    for (let i = 0; i < guidePages.length; i++) {
+        guidePages[i].classList.remove("active");
+    }
+
+    guidePages[pageNumber].classList.add("active");
+
+    currentGuidePage = pageNumber;
+
+    guidePageNumber.innerText = (currentGuidePage + 1) + " / " + guidePages.length;
+
+    previousGuideBtn.disabled = currentGuidePage === 0;
+    nextGuideBtn.disabled = currentGuidePage === guidePages.length - 1;
+}
+
+// Open the guide
+guideBtn.addEventListener("click", function() {
+    showGuidePage(0);
+    guidePopup.showModal();
+});
+
+// Close the guide
+closeGuideBtn.addEventListener("click", function() {
+    guidePopup.close();
+});
+
+// Previous page
+previousGuideBtn.addEventListener("click", function() {
+    if (currentGuidePage > 0) {
+        showGuidePage(currentGuidePage - 1);
+    }
+});
+
+// Next page
+nextGuideBtn.addEventListener("click", function() {
+    if (currentGuidePage < guidePages.length - 1) {
+        showGuidePage(currentGuidePage + 1);
+    }
+});
 // function for change section
 // the settings button only exists outside of the start screen
 
@@ -325,8 +376,9 @@ function playerDefeated() {
 function gameOver() {
     resetPlayer();
     resetBattleProgress();
-    hideNotice();
     setLocation(START_LOCATION);
+    claimedNpcRewards.clear();
+    hideNotice();
     changeSection(battlePage, mainPage);
     alert("Game Over! You ran out of lives. Starting a new game.");
 }
