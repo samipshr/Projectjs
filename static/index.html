@@ -6,7 +6,12 @@
     <title>Fantastic Three</title>
     <link rel="stylesheet" href="style.css">
     <script src="js/main.js" defer></script>
-    <script src="js/script.js" defer></script>
+    <script src="js/player.js" defer></script>
+    <script src="js/battle.js" defer></script>
+    <script src="script.js" defer></script>    
+
+</head>
+<body>
     <header>
         <h1> Fantastic Three - Samip , Richard and Hoang </h1>
         <nav class="header">
@@ -15,23 +20,62 @@
             <button class="header_button" href="#">Something Else</button>
         </nav>
     </header>
-</head>
-<body>
+        <!-- settings button - this is for the pop up, click on it and it opens up to more options. -->
+    <!-- <button id="settings-button" type="button" onclick="openMenu()"> ⚙ Settings</button> -->
+
+    <!-- menu popup -->
+    <div id="game-menu" class="popup">
+        <div class="popup-content">
+            <button class="close-button" type="button" onclick="closeMenu()">✖</button>
+            <h2>Game Menu</h2>
+
+            <!-- the main menu -->
+            <div id="menu-buttons">
+                <button type="button" onclick="showMenuPage('inventory-page')">Inventory</button>
+                <button type="button" onclick="showMenuPage('something-page')">something?</button>
+            </div>
+
+            <!-- inventory -->
+            <div id="inventory-page" class="menu-page">
+                <h3>Inventory</h3>
+                <ul id="item-list"></ul>
+                <p>Dragon Balls</p>
+                <figure>
+                    <img src="images/db.png" alt="db">
+                    <img src="images/db.png" alt="db">
+                    <img src="images/db.png" alt="db">
+                    <img src="images/db.png" alt="db">
+                    <img src="images/db.png" alt="db">
+                    <img src="images/db.png" alt="db">
+                    <img src="images/db.png" alt="db">
+                </figure>
+                <button type="button" onclick="showMenuPage('menu-buttons')">Back</button>
+            </div>
+
+            <!-- something page -->
+            <div id="something-page" class="menu-page">
+                <h3>idk, fish?</h3>
+                <p>idk, quit button ?</p>
+                <button type="button" onclick="showMenuPage('menu-buttons')">Back</button>
+            </div>
+        </div>
+    </div>
+
     <main id="game">
         <section id="start-screen">
             <div class="game-title">
                 <img src="images/main_menu_picture.gif" alt="Fantastic Three Main Menu">
-          </div>
+            </div>
             <nav class="main-menu">
-            <button id="guide-button">Guide</button>
-            <button id="play-button">Play</button>
-            <button id="map-button">Map</button>
-            <button id="quit-button">Quit</button>  
+                <button id="guide-button">Guide</button>
+                <button id="play-button">Play</button>
+                <button id="map-button">Map</button>
+                <button id="quit-button">Quit</button>
             </nav>
         </section>
 
-        <section id="map-screen" class="hidden"> 
-            <div class="map" >
+        <section id="map-screen" class="hidden">
+            <div class="map">
                 <figure>
                     <img src="images/map.png" alt="map">
                     <img class="back_icon" src="images/back_icon.png" alt="back_icon">
@@ -54,54 +98,82 @@
             </div>
         </section>
 
-        <section id="location-screen" class="hidden"> 
-            <div class = "top">
+
+        <section id="location-screen" class="hidden">
+            <div class="top">
                 <figure class="location-img">
                     <img id="location_img" src="images/kame_house.jpg" alt="Kamehouse">
                 </figure>
-                <!-- <p class="dialogue">something asdiosadndadsjasdkasjdkjaskdja daksj dk jsakd as djas jda something asdiosadndadsjasdkasjdkjaskdja daksj dk jsakd as djas jda something asdiosadndadsjasdkasjdkjaskdja daksj dk jsakd as djas jdasomething asdiosadndadsjasdkasjdkjaskdja daksj dk jsakd as djas jdasomething asdiosadndadsjasdkasjdkjaskdja daksj dk jsakd as djas jda</p> -->
             </div>
-            <div class = "bot">
-                <div class = "left">
+
+            <!-- shown after a defeat / respawn -->
+            <p id="notice" class="hidden"></p>
+
+            <!-- encounter: only appears at locations that still have an enemy -->
+            <p id="notice" class="hidden"></p>
+            <!-- Location dialogue -->
+            <div id="dialogue-box">
+                <p id="dialogue-text"></p>
+                <button id="continue-button" type="button">Continue</button>
+            </div>
+
+            <div class="bot">
+                <div class="left">
                     <button id="menu_btn">MENU</button>
                     <button id="map_btn">MAP</button>
                     <button id="save_btn">SAVE</button>
                     <button>...</button>
                 </div>
-                <div class = "right">
+                <div class="right">
                     <div class="live">
                         <p>LIVE</p>
-                        <figure>
-                            <img src="images/heart.png" alt="live">
-                            <img src="images/heart.png" alt="live">
-                            <img src="images/heart.png" alt="live">
-                        </figure>
+                        <figure id="lives-icons"></figure>
                     </div>
-                    <div class="hp">
-                        <p>HP</p>
-                        <figure>
-                            <img src="images/hp.png" alt="hp">
-                        </figure>
-                    </div>
-                    <div class="inventory">
-                        <p>INVENTORY</p>
-                        <figure>
-                            <img src="images/db.png" alt="db">
-                            <img src="images/db.png" alt="db">
-                            <img src="images/db.png" alt="db">
-                            <img src="images/db.png" alt="db">
-                            <img src="images/db.png" alt="db">
-                            <img src="images/db.png" alt="db">
-                            <img src="images/db.png" alt="db">
-                        </figure>
+                    <div class="stats">
+                        <p>LV <span id="lvl">1</span></p>
+                        <p>HP <span id="health">10/10</span></p>
+                        <p>XP <span id="xp">0</span>/10</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="battle-screen" class="hidden" > </section>
+        <!-- seperate battle screen, (this was made with hate :D ) -->
+        <section id="battle-screen" class="hidden">
 
+            <!-- Settings appears ONLY on this screen -->
+            <button id="settings-button" type="button" onclick="openMenu()"> ⚙ Settings</button>
+            <div id="encounter">
+                <h2>Encounter!</h2>
+                <h3 id="enemy-name">Enemy</h3>
+                <img id="enemy-image" src="images/enemy.jpg" alt="Enemy">
+
+            <div id="enemy-health-box"> Enemy HP: <span id="enemy-health">-</span>
+            </div>
+
+            <div id="battle-message"> 
+                An enemy appears!
+            </div>
+
+            <div id="battle-actions">
+                <button type="button" onclick="attackEnemy()" class="attack"> Attack </button>
+                <button type="button" onclick="defendPlayer()" class="defend"> Defend </button>
+                <button type="button" onclick="useItem()" class="item"> Use Item </button>
+                <button type="button" onclick="runAway()" class="run"> Run Away </button>
+            </div>
+
+            <button id="fight-again" class="hidden" type="button" onclick="fightAgain()"> Fight Again </button>
+            <button id="battle-map-button" type="button"> Return to Map </button>
+
+            <!-- Player stats in battle -->
+            <div class="battle-player-stats">
+                <p>Level: <span id="battle-level">1</span></p>
+                <p>Health: <span id="battle-health">10/10</span></p>
+                <p>XP: <span id="battle-xp">0</span>/10</p>
+                <p>Lives: <span id="battle-lives">3</span></p>
+            </div>
+        </section>
     </main>
-    <script src="script.js"></script>
 </body>
 </html>
+
