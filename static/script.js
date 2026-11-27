@@ -2,6 +2,34 @@
 
 
 
+const npcRewards = {
+    kame_point: {
+        item: "Kame House Meal",
+        quantity: 1,
+        message: "Master Roshi gives you a meal to restore your strength."
+    },
+
+    jingeru_point: {
+        item: "Village Herbs",
+        quantity: 2,
+        message: "A villager gives you some healing herbs."
+    },
+
+    baseru_point: {
+        item: "Healing Capsule",
+        quantity: 1,
+        message: "A local scientist gives you a healing capsule."
+    }
+};
+
+const claimedNpcRewards = new Set();
+
+const battlePage = document.querySelector("#battle-screen");
+const dialogueText = document.querySelector("#dialogue-text");
+const continueBtn = document.querySelector("#continue-button");
+
+let currentLocationId = START_LOCATION;
+
 const mainPage = document.querySelector("#start-screen");
 const locationPage = document.querySelector("#location-screen");
 const mapPage = document.querySelector('#map-screen');
@@ -9,104 +37,97 @@ const playBtn = document.querySelector("#play-button");
 const mapBtn = document.querySelector('#map_btn');
 const backBtn = document.querySelector('.back_icon');
 const menuBtn = document.querySelector('#menu_btn');
-const homeBtn = document.querySelector("#home-button");
-const guideBtn = document.querySelector("#guide-button");
-const guidePopup = document.querySelector("#guide-popup");
-const closeGuideBtn = document.querySelector("#close-guide");
-const guidePages = document.querySelectorAll(".guide-page");
-const previousGuideBtn = document.querySelector("#previous-guide");
-const nextGuideBtn = document.querySelector("#next-guide");
-const guidePageNumber = document.querySelector("#guide-page-number");
+const settingsBtn = document.querySelector('#settings-button');
+const noticeBox = document.querySelector('#notice');
 
-let currentGuidePage = 0;
+// function for change section
+// the settings button only exists outside of the start screen
+
+function changeSection(screenA, screenB) {
+    mainPage.classList.add("hidden");
+    locationPage.classList.add("hidden");
+    mapPage.classList.add("hidden");
+    battlePage.classList.add("hidden");
+    screenB.classList.remove("hidden");
+    settingsBtn.classList.toggle("hidden", screenB !== battlePage);
+    if (screenB === mainPage) {
+        closeMenu();
+    }
+}
 
 
-//guide button function
-guideBtn.addEventListener("click", function(){
-    guidePopup.showModal();
-});
+function showNotice(text){
+    noticeBox.textContent = text;
+    noticeBox.classList.remove("hidden");
+}
 
-closeGuideBtn.addEventListener("click", function(){
-    guidePopup.close();
-});
+function hideNotice(){
+    noticeBox.classList.add("hidden");
+}
+
+// can't walk away in the middle of a fight
+function blockedByBattle(){
+    if (battleActive) {
+        showMessage("Finish the fight or run away first!");
+        return true;
+    }
+    return false;
+}
+
+function claimLocationReward(locationId) {
+    const reward = npcRewards[locationId];
+    if (!reward || claimedNpcRewards.has(locationId)) {
+        return;
+    }
+    claimedNpcRewards.add(locationId);
+    addItem(reward.item, reward.quantity);
+    showNotice(reward.message);
+}
 
 // change to location screen when click play button from start screen
-playBtn.addEventListener("click", function(evt){
-    evt.preventDefault();
-    changeSection(mainPage,locationPage);
+// playBtn.addEventListener("click", function(evt){
+//     evt.preventDefault();
+//     changeSection(mainPage, locationPage);
+// });
+playBtn.addEventListener("click", function () {
+    hideNotice();
+    setLocation(START_LOCATION);
+    changeSection(mainPage, locationPage);
+});
+
+const titleMapBtn = document.querySelector("#map-button");
+titleMapBtn.addEventListener("click", function () {
+    changeSection(mainPage, mapPage);
 });
 
 // change to map screen when click map button from location screen
 mapBtn.addEventListener("click", function(evt){
     evt.preventDefault();
-    changeSection(locationPage,mapPage);
+    if (blockedByBattle()) return;
+    changeSection(locationPage, mapPage);
 });
 
 // change to start screen when click menu button from location screen
 menuBtn.addEventListener("click", function(evt){
     evt.preventDefault();
-    changeSection(locationPage,mainPage);
+    if (blockedByBattle()) return;
+    changeSection(locationPage, mainPage);
 });
 
 // back to location screen when click back button from map screen
 backBtn.addEventListener("click", function(evt){
     evt.preventDefault();
-    changeSection(mapPage,locationPage);
+    changeSection(mapPage, locationPage);
 });
 
-// function for change section
-function changeSection(screenA, screenB){   
-    screenA.classList.add("hidden");
-    screenB.classList.remove("hidden");
-}
-// function to show guide book and change # 
-function showGuidePage(pageNumber) {
 
-    for (let i = 0; i < guidePages.length; i++) {
-        guidePages[i].classList.remove("active");
-    }
+// location data
 
-    guidePages[pageNumber].classList.add("active");
-
-    currentGuidePage = pageNumber;
-
-    guidePageNumber.innerText = (currentGuidePage + 1) + " / " + guidePages.length;
-
-    previousGuideBtn.disabled = currentGuidePage === 0;
-    nextGuideBtn.disabled = currentGuidePage === guidePages.length - 1;
-}
-
-// Open the guide
-guideBtn.addEventListener("click", function() {
-    showGuidePage(0);
-    guidePopup.showModal();
-});
-
-// Close the guide
-closeGuideBtn.addEventListener("click", function() {
-    guidePopup.close();
-});
-
-// Previous page
-previousGuideBtn.addEventListener("click", function() {
-    if (currentGuidePage > 0) {
-        showGuidePage(currentGuidePage - 1);
-    }
-});
-
-// Next page
-nextGuideBtn.addEventListener("click", function() {
-    if (currentGuidePage < guidePages.length - 1) {
-        showGuidePage(currentGuidePage + 1);
-    }
-});
-// add fuction for location points
-
-const location_img = document.querySelector("#location_img"); 
+const location_img = document.querySelector("#location_img");
 
 const locations = {
     kame_point: {
-        img: "images/kame_house.jpg", 
+        img: "images/kame_house.jpg",
         alt: "Kamehouse",
         dialogue: "Ah, you're finally here! Dark energy is stirring across the globe, and the Dragon Balls have scattered once again. Check the Dragon Radar and start your search before the wrong hands claim them!"
     },
@@ -182,54 +203,130 @@ const locations = {
     }
 };
 
-let dialoguetext = "Ah, you're finally here! Dark energy is stirring across the globe, and the Dragon Balls have scattered once again. Check the Dragon Radar and start your search before the wrong hands claim them!";
+let dialoguetext = locations[START_LOCATION].dialogue;
+
+const points = document.querySelectorAll("#map-screen .location_icon");
+
+// show a location: image, dialogue text and the goku icon on the map
+// function setLocation(id){
+//     const loc = locations[id];
+//     location_img.src = loc.img;
+//     location_img.alt = loc.alt;
+//     dialoguetext = loc.dialogue;
+
+//     // remove dialogue when change location
+//     const oldDialogue = document.querySelector(".dialogue");
+//     if (oldDialogue) oldDialogue.remove();
+
+//     // change icon of location point
+//     points.forEach(function(point){
+//         point.src = "images/mappoint.png";
+//         point.style.width = "2%";
+//     });
+//     const current = document.getElementById(id);
+//     current.src = "images/goku.png";
+//     current.style.width = "3%";
+// }
+
+function setLocation(id) {
+    const loc = locations[id];
+    if (!loc) return;
+    currentLocationId = id;
+    location_img.src = loc.img;
+    location_img.alt = loc.alt;
+    dialogueText.textContent = loc.dialogue;
+    document.querySelector("#dialogue-box").classList.remove("hidden");
+    points.forEach(function (point) {
+        point.src = "images/mappoint.png";
+        point.style.width = "2%";
+    });
+    const current = document.getElementById(id);
+    if (current) {
+        current.src = "images/goku.png";
+        current.style.width = "3%";
+    }
+    claimLocationReward(id);
+}
 
 // toggle dialogue when click on screen
-const screen = document.querySelector(".top")
-screen.addEventListener("click", dialogue)
+// const topScreen = document.querySelector(".top");
+// topScreen.addEventListener("click", function(evt){
+//     evt.preventDefault();
+//     const existing = document.querySelector(".dialogue");
+//     if (existing) {
+//         existing.remove();
+//         return;
+//     }
+//     const p = document.createElement("p");
+//     p.classList.add("dialogue");
+//     p.innerText = dialoguetext;
+//     document.querySelector(".location-img").appendChild(p);
+// });
 
-// move to location when click the point on the map
-const points = document.querySelectorAll("#map-screen .location_icon");
-for(let i=0; i< points.length; i++){
-    points[i].addEventListener("click", function(evt){
+// move to location when click the point on the map - the encounter starts here
+points.forEach(function(point){
+    point.addEventListener("click", function(evt) {
         evt.preventDefault();
-        const location = locations[points[i].id];
-        location_img.src = location.img;
-        location_img.alt = location.alt;
-        dialoguetext = location.dialogue;
-        // remove dialogue when change location
-        const oldDialogue = document.querySelector(".dialogue");
-        if (oldDialogue){
-            dialogueOff(evt);
-        }
-        // change icon of location point
-        for(let i=0; i< points.length; i++){
-            points[i].src = "images/mappoint.png";
-            points[i].style.width = "2%";
-        }
-        points[i].src = "images/goku.png";
-        points[i].style.width = "3%";
+        if (blockedByBattle()) return;
+        hideNotice();
+        setLocation(point.id);
+        changeSection(mapPage, locationPage);
+    });
+});
 
-        changeSection(mapPage,locationPage);
-    })
+// continueBtn.addEventListener("click", function() {
+//     // If this location has an enemy that hasn't been defeated, begin the encounter.
+//     if (enemies[currentLocationId] &&
+//         !defeatedEnemies.has(currentLocationId)) {
+//         startEncounter(currentLocationId);
+//     } else {
+//         // no enemy here?, see ya
+//         changeSection(locationPage, mapPage);
+//     }
+// });
+
+continueBtn.addEventListener("click", function() {
+    if (enemies[currentLocationId] &&
+        !defeatedEnemies.has(currentLocationId)) {
+        startEncounter(currentLocationId);
+    } else {
+        changeSection(locationPage, mapPage);
+    }
+});
+
+// return 
+const battleMapBtn = document.querySelector("#battle-map-button");
+battleMapBtn.addEventListener("click", function() {
+    if (battleActive) {
+        showMessage("Finish the encounter or run away first!");
+        return;
+    }
+    endEncounter();
+    changeSection(battlePage, mapPage);
+});
+
+// death/game over
+
+// called from battle.js when health reaches 0 ( you speel forever )
+function playerDefeated() {
+    const livesLeft = loseLife();
+    if (!livesLeft) {
+        gameOver();
+        return;
+    }
+    restoreFullHealth();
+    endEncounter();
+    setLocation(START_LOCATION);
+    changeSection(battlePage, locationPage);
+    showNotice("You were defeated! You wake up at Kame House with full health. Lives left: " +player.lives);
 }
 
-// add dialogue
-function dialogue(evt){
-    evt.preventDefault();
-    const figure = document.querySelector(".location-img");
-    const p = document.createElement("p");
-    p.classList.add("dialogue")
-    p.innerText = dialoguetext;
-    figure.appendChild(p)
-    screen.removeEventListener("click", dialogue);
-    screen.addEventListener("click", dialogueOff);
-}
-
-function dialogueOff(evt){
-    evt.preventDefault();
-    const p = document.querySelector(".dialogue");
-    p.remove();
-    screen.removeEventListener("click", dialogueOff);
-    screen.addEventListener("click", dialogue);
+// out of lives? out of tries, start again
+function gameOver() {
+    resetPlayer();
+    resetBattleProgress();
+    hideNotice();
+    setLocation(START_LOCATION);
+    changeSection(battlePage, mainPage);
+    alert("Game Over! You ran out of lives. Starting a new game.");
 }

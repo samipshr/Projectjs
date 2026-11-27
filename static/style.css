@@ -261,7 +261,7 @@
     
 }
 
-.hp{
+/* .hp{
     display: block;
     display: flex;
     flex-wrap: nowrap;
@@ -278,7 +278,9 @@
 .hp img{
     width: 200px;
     padding-right: 1rem;
-}
+} */
+
+
 .inventory{
     display: block;
     display: flex;
@@ -287,13 +289,13 @@
     height: 3.3rem;
 }
 
-.inventory p{
+.inventory-page p{
     padding-left: 3rem;
     font-size: large;
     color: rgb(20, 20, 20);
 
 }
-.inventory img{
+.inventory-page img{
     width: 35px;
     padding-right: 0.5rem;
 }
@@ -393,21 +395,366 @@ nav.header{
     display: none !important;
 }
 
-@media (max-width: 750px) {
-  header {
-    flex-direction: column;
+
+/* ===== merged from tem.html: settings popup ===== */
+#settings-button {
+    position: fixed;
+    top: 15px;
+    right: 15px;
+    padding: 10px 15px;
+    cursor: pointer;
+    z-index: 10;
+}
+
+.popup {
+    display: none;
+    position: fixed;
+    z-index: 20;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
     justify-content: center;
-    gap: 1em;
-    padding: 1em;
-  }
+    align-items: center;
+}
 
-  header h1 {
-    font-size: 1.3em;
+.popup-content {
+    background: #303642;
+    color: white;
+    width: 300px;
+    max-width: 85%;
+    padding: 25px;
+    border-radius: 12px;
+    position: relative;
     text-align: center;
-  }
+}
 
-  nav.header {
+.popup-content h2,
+.popup-content h3 {
+    color: #f0c674;
+}
+
+.close-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+}
+
+.menu-page {
+    display: none;
+}
+
+#menu-buttons button,
+.menu-page button {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+#item-list {
+    list-style: none;
+    padding: 0;
+}
+
+#inventory-page figure {
+    margin: 0;
+}
+
+#inventory-page img {
+    width: 30px;
+}
+
+/* ===== merged from tem.html: encounter ===== */
+#notice {
+    width: 100%;
+    max-width: 850px;
+    margin: 10px auto;
+    padding: 12px;
+    background: #7a2a2a;
+    border-radius: 8px;
+    text-align: center;
+}
+
+#encounter {
+    width: 100%;
+    max-width: 850px;
+    margin: 10px auto;
+    background: #303642;
+    border: 2px solid #d6a044;
+    border-radius: 15px;
+    padding: 20px;
+    text-align: center;
+    font-family: Impact, fantasy;
+}
+
+#enemy-name {
+    color: #f0c674;
+    font-size: 24px;
+    margin: 0;
+}
+
+#enemy-image {
+    width: 200px;
+    height: 200px;
+    object-fit: contain;
+    display: block;
+    margin: 15px auto;
+}
+
+#enemy-health-box {
+    background: #20232b;
+    color: #f0c674;
+    border: 2px solid #d6a044;
+    border-radius: 8px;
+    padding: 10px 20px;
+    width: fit-content;
+    margin: 10px auto;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+#battle-message {
+    background: #2b3a65;
+    padding: 15px;
+    border-radius: 8px;
+    margin: 20px 0;
+    min-height: 25px;
+}
+
+#battle-actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}
+
+#battle-actions button {
+    padding: 15px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    color: white;
+}
+
+#battle-actions button:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+#battle-actions .attack { background: #ca5656; }
+#battle-actions .defend { background: #5696ce; }
+#battle-actions .item   { background: #52bc80; }
+#battle-actions .run    { background: #d6b567; }
+
+#battle-actions button:not(:disabled):hover {
+    filter: brightness(1.2);
+}
+
+#fight-again {
+    margin-top: 12px;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* player stats in the bottom bar (replaces the old hp bar) */
+.stats {
+    display: flex;
+    align-items: center;
+    height: 3.3rem;
+}
+
+.stats p {
+    padding-left: 3rem;
+    font-size: large;
+    color: rgb(20, 20, 20);
+}
+
+/* location dialogue */
+
+#dialogue-box {
+    width: 90%;
+    max-width: 850px;
+    margin: 15px auto;
+    padding: 20px;
+    background: rgba(35, 45, 65, 0.95);
+    border: 2px solid #d6a044;
+    border-radius: 12px;
+    text-align: center;
+}
+
+#dialogue-text {
+    font-size: 18px;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+#continue-button {
+    padding: 12px 30px;
+    border: none;
+    border-radius: 8px;
+    background: #d6a044;
+    color: #20232b;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+
+/* Battle screen */
+
+#battle-screen {
+    width: 100%;
+    min-height: 100vh;
+    background: #20232b;
+    color: white;
+    padding: 30px 15px;
+    position: relative;
+}
+
+#battle-screen #encounter {
+    width: 100%;
+    max-width: 850px;
+    margin: 30px auto;
+    background: #303642;
+    border: 2px solid #d6a044;
+    border-radius: 15px;
+    padding: 20px;
+    text-align: center;
+}
+
+#battle-screen #enemy-image {
+    width: 200px;
+    height: 200px;
+    object-fit: contain;
+    display: block;
+    margin: 15px auto;
+}
+
+#battle-screen #enemy-health-box {
+    background: #20232b;
+    color: #f0c674;
+    border: 2px solid #d6a044;
+    border-radius: 8px;
+    padding: 10px 20px;
+    width: fit-content;
+    margin: 10px auto;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+#battle-screen #battle-message {
+    background: #2b3a65;
+    padding: 15px;
+    border-radius: 8px;
+    margin: 20px 0;
+    min-height: 25px;
+}
+
+#battle-screen #battle-actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}
+
+#battle-screen #battle-actions button {
+    padding: 15px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    color: white;
+}
+
+#battle-screen #battle-actions button:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+#battle-screen .attack {
+    background: #ca5656;
+}
+
+#battle-screen .defend {
+    background: #5696ce;
+}
+
+#battle-screen .item {
+    background: #52bc80;
+}
+
+#battle-screen .run {
+    background: #d6b567;
+}
+
+#battle-screen #battle-actions button:not(:disabled):hover {
+    filter: brightness(1.2);
+}
+
+#battle-screen #fight-again,
+#battle-screen #battle-map-button {
+    margin-top: 15px;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+
+/* Player stats during battle */
+
+.battle-player-stats {
+    display: flex;
     justify-content: center;
     flex-wrap: wrap;
-  }
+    gap: 20px;
+    margin-top: 25px;
+    padding: 15px;
+    background: #20232b;
+    border-radius: 10px;
+}
+
+
+/* Settings button appears only on battle screen */
+
+#battle-screen #settings-button {
+    position: fixed;
+    top: 15px;
+    right: 15px;
+    padding: 10px 15px;
+    cursor: pointer;
+    z-index: 10;
+}
+
+
+/* makes the dialogue and battle layout work on small screens */
+@media (max-width: 600px) {
+    #battle-screen #enemy-image {
+        width: 150px;
+        height: 150px;
+    }
+
+    #battle-screen #battle-actions {
+        grid-template-columns: 1fr;
+    }
+
+    .battle-player-stats {
+        flex-direction: column;
+        gap: 5px;
+    }
+
+    #dialogue-text {
+        font-size: 15px;
+    }
 }
