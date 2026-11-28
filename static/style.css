@@ -642,6 +642,7 @@ nav.header{
     display: flex;
     align-items: center;
     height: 3.3rem;
+    flex-wrap: wrap;
 }
 
 .stats p {
@@ -650,6 +651,18 @@ nav.header{
     color: rgb(20, 20, 20);
 }
 
+/* dragonball icon in inventory */
+.dragonball-ic{
+    display: flex;
+    align-items: center
+}
+.dragonball-ic p{
+    padding-left: 3rem;
+}
+#dragonball-ic img{
+    width: 10%;
+    padding-left: 5px;
+}
 /* location dialogue */
 
 #dialogue-box {
