@@ -197,17 +197,88 @@
 }
 
 .dialogue {
-  position: absolute;
-  top: 75%;      
-  left: 22%;        
-  margin: 0;
-  color: #111111;
-  background-color: rgba(244, 241, 241, 0.861); 
-  padding: 6px 12px;
-  border-radius: 15px;
-  font-size: clamp(8px, 1.8vw, 18px);
-  width: 55%;
+    position: absolute;
+    top: 75%;      
+    left: 22%;        
+    margin: 0;
+    color: #111111;
+    background-color: rgba(244, 241, 241, 0.861); 
+    padding: 6px 12px;
+    border-radius: 15px;
+    font-size: clamp(8px, 1.8vw, 18px);
+    width: 55%;
   
+}
+
+.top figure .dragonball {
+    cursor: pointer;
+    position: absolute;
+    width: 2%;
+}
+.top figure .dragonball:hover{
+    opacity: 1;
+    filter: brightness(1.15);
+    transform: scale(1.1);
+}
+#kame_db {
+    top:8%;
+    right: 29%;
+}
+#satan_db{
+    top:53%;
+    right: 48%
+}
+#jingeru_db{
+    top:67%;
+    right: 95%
+}
+#east_db{
+    top:29%;
+    right: 9%
+}
+#papaya_db{
+    top:72.5%;
+    right: 89.8%
+}
+#pilaf_db{
+    top:10%;
+    right: 48.4%
+}
+#central_db{
+    top:24.5%;
+    right: 15%
+}
+#north_db{
+    top:81%;
+    right: 73%
+}
+#baseru_db{
+    top:45%;
+    right: 37.8%
+}
+#ginger_db{
+    top:65%;
+    right: 62.5%
+}
+#yunzabit_db{
+    top:63.5%;
+    right: 74.5%
+}
+#muscle_db{
+    top:24%;
+    right: 89%
+}
+#karin_db{
+    top:96%;
+    right: 89%
+}
+#redribbon_db{
+    top:14%;
+    right: 65%
+}
+#jungle_db{
+    top:5.8%;
+    right: 22.5%
 }
 
 .bot{
