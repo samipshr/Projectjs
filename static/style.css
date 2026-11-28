@@ -737,6 +737,18 @@ nav.header{
     z-index: 10;
 }
 
+#win-popup {
+    background-color: #172238;
+    color: whitesmoke;
+    border: 2px solid #e5a82e;
+    border-radius: 10px;
+    padding: 1.5em;
+    text-align: center;
+}
+
+#win-popup::backdrop {
+    background-color: #000000bf;
+}
 
 /* makes the dialogue and battle layout work on small screens */
 @media (max-width: 600px) {

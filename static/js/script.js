@@ -108,7 +108,11 @@ function changeSection(screenA, screenB) {
 
 
 function showNotice(text){
-    noticeBox.textContent = text;
+    if (noticeBox.classList.contains("hidden")) {
+        noticeBox.textContent = text;
+    } else {
+        noticeBox.textContent += " " + text;
+    }
     noticeBox.classList.remove("hidden");
 }
 
@@ -134,6 +138,8 @@ function claimLocationReward(locationId) {
     addItem(reward.item, reward.quantity);
     showNotice(reward.message);
 }
+
+
 
 // change to location screen when click play button from start screen
 // playBtn.addEventListener("click", function(evt){
@@ -321,7 +327,9 @@ points.forEach(function(point){
         if (blockedByBattle()) return;
         hideNotice();
         setLocation(point.id);
+        if(collectDragonBall(point.id)) {alert("You found a Dragon Ball! " + dragonBallsFound + "/7");}
         changeSection(mapPage, locationPage);
+        if (dragonBallsFound === 7) {document.querySelector("#win-popup").showModal();}
     });
 });
 
@@ -376,6 +384,7 @@ function playerDefeated() {
 function gameOver() {
     resetPlayer();
     resetBattleProgress();
+    placeDragonBalls(); 
     setLocation(START_LOCATION);
     claimedNpcRewards.clear();
     hideNotice();
